@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>窗口移动鼠标拖拽效果</title>
+	<script type="text/javascript" src="util.js"></script>
+	<style type="text/css">
+		body{margin:0; }
+		#box{width: 600px; height: 500px; position: absolute; top: 10%; left: 10%; background-color: green; cursor: move;}
+		#bigbox{width: 1100px; height: 2000px; position: relative; overflow: hidden; background-color: red; margin:0 auto; }
+	</style>
+</head>
+<body>
+	<div id="box">
+	</div>
+
+	<script type="text/javascript">
+	//预设变量
+	var y = 0,x = 0;
+	var boxy = 0,boxx = 0;
+	var DscroX = 0,DscroY = 0;
+	//页面加载事件开始
+	window.onload =function(){
+
+		//通过ID获取box
+		var box = $("box");
+		//var bigbox = $("bigbox");
+		//设置鼠标按下事件
+		eventutil.addHandler(box,'mousedown',function(event){
+			//获取event
+			event = eventutil.getEvent(event);
+			//获取鼠标按下时的坐标
+			y = event.clientY,x = event.clientX;
+			//获取鼠标按下时移动内容的坐标
+			boxy = box.offsetTop,boxx = box.offsetLeft;
+			//定义鼠标移动的事件并调用鼠标移动函数
+			eventutil.addHandler(document,'mousemove',blemousemove);
+			//定义鼠标释放事件并调用鼠标释放事件
+			eventutil.addHandler(document,'mouseup',blemoseup);
+		});
+
+	};
+	var scroX = document.documentElement.scrollTop||document.body.scrollTop,scroY = document.documentElement.scrollLeft||document.body.scrollLeft;
+
+	//鼠标释放事件
+	function blemoseup(){
+		//删除鼠标移动事件
+		eventutil.removeHandler(document,'mousemove',blemousemove);
+		//删除鼠标释放事件
+		eventutil.removeHandler(document,'mouseup',blemoseup);
+	};		
+	//鼠标移动函数
+	function blemousemove(){
+		//winW+winH是浏览器的页面的宽高。
+		// if(Boolean(bigbox.innerHTML)){
+		// 	winW = bigbox.clientWidth;
+		// 	winH = bigbox.clientHeight;
+		// }else{
+		    winW=document.documentElement.clientWidth || document.body.clientWidth,
+		    winH=document.documentElement.clientHeight || document.body.clientHeight;
+	    // }
+	    //maxWmaxH是浏览器页面的宽高减去移动内容的宽高。
+	    maxW=winW-box.offsetWidth,
+	    maxH=winH-box.offsetHeight;
+
+	    //计算移动结果 目前鼠标的坐标减去点击时鼠标的坐标再加上移动页面的距离。
+	    var t = (event.clientY - y)+boxy,l = (event.clientX - x)+boxx;
+
+	    //判断是否超出边框需升级到可以选择外围边框。目前默认外围边框是页面
+		if (t<0) {
+			t=0;
+		}else if(t>maxH){
+			t=maxH;
+		}
+		if (l<0) {
+			l=0;
+		}else if(l>maxW){
+			l=maxW;
+		}
+		//赋值完成移动操作
+		//box.css("top",t);
+		box.style.top= t + "px";
+		box.style.left= l + "px";
+	};
+	window.onscroll = function(){
+		DscroX = (document.documentElement.scrollTop||document.body.scrollTop) - scroX,DscroY = (document.documentElement.scrollLeft||document.body.scrollLeft) -scroY;
+		console.log(DscroY+"||"+DscroX);
+		var boxf = $("box").offsetLeft,boxt=$("box").offsetTop;
+		console.log(boxt+"|+|"+DscroX+"|=|"+(boxt+DscroX));
+		box.style.top = boxt+DscroX+"px";
+		box.style.left = boxf+DscroY+"px";
+	};
+	</script>
+</body>
+</html>

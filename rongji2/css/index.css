@@ -1,0 +1,29 @@
+/*css reset*/
+body,h1{margin: 0px; font-family: "Source Han Sans CN","Microsoft JhengHei", Arial, Helvetica, sans-serif;}
+/*css reset*/
+
+/*public*/
+body{background-color: #f3e1cb; background: url(../images/hjcd.jpg) no-repeat top center;}
+.pageWidth{width: 1009px; margin: 0px auto; text-align: center;position: relative;}
+/*public*/
+
+/*top*/
+.top{width: 100%; height: 34px; background-color: #303030;}
+.top .title{width: 222px; border-top: 79px solid #E16E42; border-left: 37px solid transparent; border-right: 37px solid transparent;float: left; margin-left: 36px; }
+.top .title h1{color: white; line-height: 79px; position: absolute; top: 0px; left: 0px; width: 297px; height: 79px; text-align: center; font-size: 37px; margin-left: 36px; }
+.topcont{float: left;width: auto; height: 34px; line-height: 34px; color: #f3eadd; font-size: 16px; text-align: left; text-indent: 55px;}
+.topcont .moeny{color: #ed7445;}
+/*top*/
+
+/*selection*/
+.selection{}
+.selection .title{ width: 300px; height: 130px; margin-left: 56px; display: inline-block; float: left;}
+.selection .leftX{width: 0px; height: 22px; -webkit-transform: skew(-13deg); -moz-transform: skew(-13deg); -ms-transform: skew(-13deg); -o-transform: skew(-13deg); 
+				   -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=-0.23086819112556295, M21=-0.23086819112556295, M22=1, SizingMethod='auto expand')";
+ 					border: 1px solid #686868; float: left; margin-top: 105px;}
+.selection .rightX{ width: 0px; height: 23px; -webkit-transform: skew(-13deg); -moz-transform: skew(-13deg); -ms-transform: skew(-13deg); -o-transform: skew(-13deg); border: 1px solid #686868; float: left; margin-top: 65px; margin-left: 10px;}
+.selection .conts{ float: left; height: 40px; line-height: 40px; padding: 0px 45px; font-size: 28px; border: 2.5px solid #686868; margin-top: 74px; margin-left: 11px; -webkit-transform: skew(-13deg); -moz-transform: skew(-13deg); -ms-transform: skew(-13deg); -o-transform: skew(-13deg);}
+.selection .conts span{ -webkit-transform: skew(13deg); -moz-transform: skew(13deg); -ms-transform: skew(13deg); -o-transform: skew(13deg); display: inline-block;}
+.selection .titlebox{width: 100%; height: 130px;}
+.selection .cont{width: 100%; height: 1140px;}
+/*selection*/

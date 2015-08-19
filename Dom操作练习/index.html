@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Dom操作实验</title>
+	<script type="text/javascript" src="util.js"></script>
+</head>
+<body>
+	<div id="box">
+		<input type="button" value="按钮" id="btn" onclick="showMessage()" />
+		<input type="button" value="按钮2" id="btn2" />
+		<input type="button" value="按钮3" id="btn3" />
+		<a href="http://www.baidu.com" id="go">跳转</a>
+	</div>
+	<script type="text/javascript">
+	//页面加载后执行函数
+		window.onload =function(){
+			//获取go及box
+			var go =document.getElementById("go");
+			var box = document.getElementById("box");
+			//给box添加事件
+			eventutil.addHandler(box,'click',function(){
+				alert("box的事件");
+			});
+			//给go添加事件并在函数中获取event后输出节点类型、阻止跳转和冒泡。
+			eventutil.addHandler(go,'click',function(event){
+				event = eventutil.getEvent(event);
+				alert(eventutil.getType(event));
+				alert(eventutil.getElement(event));
+				eventutil.preventDefault(event);
+				eventutil.stopPropagetion(event);
+			});
+		};
+		function showMessage(){
+			alert("btn事件");
+		}
+	  	var bt2 = document.getElementById("btn2");
+	  	var bt3 = document.getElementById("btn3");
+	  	eventutil.addHandler(bt2,'click',function(event){
+	  		event = eventutil.getEvent(event);
+	  		alert("bt2事件");
+	  		alert(eventutil.getType(event));
+	  	});
+	  	eventutil.addHandler(bt3,'click',function(event){
+	  		event =eventutil.getEvent(event);
+	  		alert("bt3事件");
+	  		alert(eventutil.getElement(event));
+	  		eventutil.stopPropagetion(event);
+	  	});
+	</script>
+</body>
+</html>
